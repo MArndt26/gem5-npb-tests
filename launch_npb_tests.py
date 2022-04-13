@@ -4,6 +4,15 @@ from uuid import UUID
 from itertools import starmap
 from itertools import product
 
+# # sys.path.insert(1, 'gem5/util/gem5art/artifact/gem5art/artifact')
+# # sys.path.insert(1, 'gem5/util/gem5art/run/gem5art')
+# # sys.path.insert(1, 'gem5/util/gem5art/tasks/gem5art/tasks')
+
+
+# from .gem5.util.gem5art.artifact.gem5art.artifact.artifact import Artifact
+# from .gem5.util.gem5art.run.gem5artrun import gem5Run
+# from .gem5.util.gem5art.tasks.gem5art.tasks.tasks import run_gem5_instance
+
 from gem5art.artifact.artifact import Artifact
 from gem5art.run import gem5Run
 from gem5art.tasks.tasks import run_gem5_instance
@@ -20,7 +29,7 @@ packer = Artifact.registerArtifact(
 )
 
 experiments_repo = Artifact.registerArtifact(
-    command = 'git clone https://your-remote-add/npb-tests.git',
+    command = 'git clone https://marndt26/resume.git', #TODO: ADD OUR REMOTE HERE
     typ = 'git repo',
     name = 'npb_tests',
     path =  './',
@@ -129,7 +138,7 @@ if __name__ == "__main__":
         return gem5Run.createFSRun(
             'npb with gem5-20.1',
             binary_gem5,
-            'configs-npb-tests-gem5-20.1/run_npb.py',
+            'configs/run_npb.py',
             f'''results/run_npb_multicore/{bench}/{clas}/{cpu}/{num_cpu}''',
             artifact_gem5, gem5_repo, experiments_repo,
             'linux-stable/vmlinux-4.19.83',

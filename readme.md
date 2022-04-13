@@ -17,6 +17,8 @@ sudo setfacl --modify user:gem5project:rw /var/run/docker.sock
 
 docker run -p 27017:27017 -v /home/gem5project/npb-tests/docker:/data/db --name mongo-npb -d mongo
 
+docker run -p 27017:27017 -v /home/gem5project/npb-tests/docker_mongo4:/data/db --name mongo4-npb -d mongo:4.4.13-focal
+
 sudo apt-get install rabbitmq-server
 ```
 
@@ -33,6 +35,9 @@ celery -A gem5art.tasks.celery worker --autoscale=4,0 -E
   - File "/home/gem5project/npb-tests/venv/lib/python3.8/site-packages/gem5art/artifact/\_artifactdb.py", line 133, in **init**
     - prev: `self.fs = gridfs.GridFSBucket(self.db, disable_md5=True)`
     - new: `self.fs = gridfs.GridFSBucket(self.db)`
+- Rebuilt gem5 with `scons build/X86_MESI_Two_Level/gem5.opt --default=X86 PROTOCOL=MESI_Two_Level SLICC_HTML=True -j8`
+- made changes to gem5art librarys in venv
+  - search `FIXME:` of `MARNDT26`
 
 ## Resources
 
