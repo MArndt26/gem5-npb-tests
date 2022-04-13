@@ -10,3 +10,4 @@ disk-image/npb/npb-hooks
 disk-image/packer_cache
 gem5
 linux-stable/
+docker
